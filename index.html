@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>〇〇高等学校 生徒会 - ホーム</title>
+    <link href="./css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- ナビゲーション -->
+    <nav class="bg-white shadow-lg">
+        <div class="p-5 flex items-center">
+            <img src="./images/nwuss.png" alt="奈良女子大学附属中等教育学校_ロゴ" class="w-16 h-16 mr-5">
+            <div class="flex flex-col">
+                <span class="sm:text-base text-gray-600 font-medium leading-tight text-sm">国立大学法人 奈良国立大学機構</span>
+                <div class="flex-col sm:flex sm:flex-row sm:space-x-2">
+                    <span class="sm:text-2xl lg:text-3xl text-gray-900 font-bold leading-tighttracking-wide text-xl">奈良女子大学附属中等教育学校</span>
+                    <span class="sm:text-2xl lg:text-3xl text-gray-900 font-bold leading-tighttracking-wide text-xl">サイエンス研究会</span>
+                </div>
+                <span class="sm:text-lg text-gray-500 font-normal leading-tight tracking-wider text-sm">Nara Women's University Secondary School Science Research Group</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section class="relative h-screen w-full overflow-hidden">
+        <!-- 背景画像 -->
+        <div class="absolute inset-0">
+            <img 
+                src="./images/IMG_9234.JPG" 
+                alt="学校の風景" 
+                class="w-full h-full object-cover object-center md:object-center sm:object-[60%_center]"
+            >
+            <!-- オーバーレイ -->
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        </div>
+        
+        <!-- コンテンツ -->
+        <div class="relative z-10 flex items-center justify-center h-full">
+            <div class="text-center text-white px-4 max-w-4xl">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 drop-shadow-lg">光らせることから</h1>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 drop-shadow-lg">始めよう</h1>
+                <!-- <p class="text-xl md:text-2xl mb-8 drop-shadow-md">〇〇高等学校生徒会は、全校生徒の声を大切に、より良い学校づくりに取り組んでいます。</p> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 新着実績セクション -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">新着実績</h2>
+                <p class="text-lg text-gray-600">サイエンス研究会の最新の活動実績をご紹介します</p>
+            </div>
+            
+            <div id="achievements-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 実績カードがここに動的に挿入されます -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Usセクション -->
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="relative h-96 lg:h-auto order-1 lg:order-2">
+                <img src="./images/IMG_9234.JPG" alt="活動の様子" class="w-full h-full object-cover">
+            </div>
+            <div class="px-8 lg:px-16 py-16 flex items-center order-2 lg:order-1">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">About Us</h2>
+                    <p class="text-lg text-gray-700 mb-6">私たちについて</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        私たちSSHサイエンス研究会は、電子工作、WEB制作、ロボット制作、プログラミングなどを通して、
+                        テクノロジーの魅力を深く学び、創造的な活動に取り組んでいます。
+                    </p>
+                    <button class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors">
+                        詳しく見る
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Activitiesセクション -->
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2" data-reveal="slide-reveal">
+            <div class="relative h-96 lg:h-auto order-1 lg:order-1 slide-image">
+                <img src="./images/IMG_9234.JPG" alt="活動の様子" class="w-full h-full object-cover">
+            </div>
+            <div class="px-8 lg:px-16 py-16 flex items-center order-2 lg:order-2 slide-content">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Activities</h2>
+                    <p class="text-lg text-gray-700 mb-6">私たちの活動</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        私たちの活動は多岐にわたります。定期的な活動でプログラミング技術を学び、チームで協力しながら課題を解決します。地域のイベントやコンテストにも参加し、技術力を高めています。以下は主な活動内容です。
+                    <ul class="list-disc pl-6 mb-8">
+                        <li>電子工作: 幅広い電子機器の開発を学ぶ</li>
+                        <li>WEB開発: デザインからコーディングを通してWEB開発を学ぶ</li>
+                        <li>ロボット制作: 設計・制作・プログラミング</li>
+                    </ul>
+                    </p>
+                    <button
+                        class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors">
+                        活動について
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+    
+
+
+    <script src="./js/microcms.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

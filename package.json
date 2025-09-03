@@ -1,0 +1,13 @@
+{
+  "name": "student-council-website",
+  "version": "1.0.0",
+  "description": "生徒会のホームページ",
+  "main": "index.html",
+  "scripts": {
+    "build-css": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
