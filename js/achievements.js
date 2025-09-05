@@ -96,10 +96,10 @@ function createAchievementCard(achievement) {
     const imageData = achievement.image || achievement.swiper_image;
 
     return `
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col cursor-pointer" onclick="location.href='achievement-detail.html?id=${achievement.id}&type=achievement'">
             ${imageData ? `
                 <div class="h-48 bg-gray-200 overflow-hidden">
-                    <img src="${imageData.url}" alt="${achievement.title}" class="w-full h-full object-cover hover-lift">
+                    <img src="${imageData.url}" alt="${achievement.title}" class="w-full h-full object-cover">
                 </div>
             ` : ''}
             <div class="p-6 flex-1 flex flex-col">

@@ -20,10 +20,10 @@ function formatDate(dateString) {
 function createNewsCard(news) {
     const imageData = news.image;
     return `
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col" data-category="${news.category || ''}">
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col cursor-pointer" data-category="${news.category || ''}" onclick="location.href='news-detail.html?id=${news.id}&type=news'">
             ${imageData ? `
                 <div class="h-48 bg-gray-200 overflow-hidden">
-                    <img src="${imageData.url}" alt="${news.title}" class="w-full h-full object-cover hover-lift">
+                    <img src="${imageData.url}" alt="${news.title}" class="w-full h-full object-cover">
                 </div>
             ` : ''}
             <div class="p-6 flex-1 flex flex-col">
