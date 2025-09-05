@@ -1,7 +1,7 @@
 {
-  "name": "student-council-website",
+  "name": "science-research-group-website",
   "version": "1.0.0",
-  "description": "生徒会のホームページ",
+  "description": "サイエンス研究会 情報班・物理班のホームページ",
   "main": "index.html",
   "scripts": {
     "build-css": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
