@@ -69,7 +69,7 @@ async function loadRecentItems() {
         if (loader) loader.classList.add('hidden');
         if (container) {
             container.classList.remove('hidden');
-            container.innerHTML = '<div class="col-span-full text-center text-red-500">実績の読み込みに失敗しました</div>';
+            container.innerHTML = '<div class="col-span-full text-center text-red-500">該当する活動実績が見つかりません<br><span class="text-gray-600 text-sm">しばらく時間をおいて再度お試しください。</span></div>';
         }
     }
 }

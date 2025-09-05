@@ -15,6 +15,10 @@ function formatDate(dateString) {
     });
 }
 
+function getCategoryStyle(category) {
+    return 'bg-black text-white';
+}
+
 function buildNewsCard(article) {
     const img = article.image;
     return `
@@ -37,7 +41,7 @@ function buildNewsCard(article) {
                 <div class="flex items-center justify-between mt-auto">
                     <span class="text-sm text-gray-500">${formatDate(article.publishedAt)}</span>
                     ${article.category && article.category.length > 0 ? `
-                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-200 text-gray-800">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getCategoryStyle(article.category)}">
                             ${Array.isArray(article.category) ? article.category.join(', ') : article.category}
                         </span>
                     ` : ''}

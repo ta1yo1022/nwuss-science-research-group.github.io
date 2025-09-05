@@ -41,47 +41,62 @@ function showError() {
 }
 
 function renderData(data, type) {
-    document.getElementById('article-title').textContent = data.title;
-    document.getElementById('article-date').textContent = formatDate(data.publishedAt);
+    const titleEl = document.getElementById('article-title');
+    const dateEl = document.getElementById('article-date');
+    const pageTitleEl = document.getElementById('page-title');
+    const descEl = document.getElementById('article-description');
+    
+    if (titleEl) titleEl.textContent = data.title;
+    if (dateEl) dateEl.textContent = formatDate(data.publishedAt);
     
     const section = type === 'news' ? 'お知らせ' : '活動実績';
-    document.getElementById('page-title').textContent = `${data.title} - ${section} - 奈良女子大学附属中等教育学校 サイエンス研究会 情報班・物理班`;
+    if (pageTitleEl) pageTitleEl.textContent = `${data.title} - ${section} - 奈良女子大学附属中等教育学校 サイエンス研究会 情報班・物理班`;
 
-    if (data.description) {
-        document.getElementById('article-description').textContent = data.description;
-    } else {
-        document.getElementById('article-description').style.display = 'none';
+    if (descEl) {
+        if (data.description) {
+            descEl.textContent = data.description;
+        } else {
+            descEl.style.display = 'none';
+        }
     }
 
     if (type === 'news' && data.category) {
         const badge = document.getElementById('article-category');
         if (badge) {
             badge.textContent = data.category;
-            badge.parentElement.classList.remove('hidden');
+            if (badge.parentElement) badge.parentElement.classList.remove('hidden');
         }
     }
 
     const mainImg = data.swiper_image || data.image;
     if (mainImg) {
-        document.getElementById('main-img').src = mainImg.url;
-        document.getElementById('main-img').alt = data.title;
-        document.getElementById('main-image').classList.remove('hidden');
+        const mainImgEl = document.getElementById('main-img');
+        const mainImageEl = document.getElementById('main-image');
+        if (mainImgEl) {
+            mainImgEl.src = mainImg.url;
+            mainImgEl.alt = data.title;
+        }
+        if (mainImageEl) mainImageEl.classList.remove('hidden');
     }
 
-    if (data.body) {
-        document.getElementById('article-body').innerHTML = data.body;
+    const bodyEl = document.getElementById('article-body');
+    if (data.body && bodyEl) {
+        bodyEl.innerHTML = data.body;
     }
 
     if (data.swiper_image && data.swiper_image.length > 1) {
         const gallery = document.getElementById('gallery-images');
-        const html = data.swiper_image.slice(1).map(img => `
-            <div class="aspect-w-16 aspect-h-9">
-                <img src="${img.url}" alt="${data.title}" class="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer" onclick="openModal('${img.url}', '${data.title}')">
-            </div>
-        `).join('');
-        
-        gallery.innerHTML = html;
-        document.getElementById('image-gallery').classList.remove('hidden');
+        const imageGalleryEl = document.getElementById('image-gallery');
+        if (gallery && imageGalleryEl) {
+            const html = data.swiper_image.slice(1).map(img => `
+                <div class="aspect-w-16 aspect-h-9">
+                    <img src="${img.url}" alt="${data.title}" class="w-full h-48 object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow cursor-pointer" onclick="openModal('${img.url}', '${data.title}')">
+                </div>
+            `).join('');
+            
+            gallery.innerHTML = html;
+            imageGalleryEl.classList.remove('hidden');
+        }
     }
 }
 
