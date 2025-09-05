@@ -14,10 +14,21 @@
             <div class="flex flex-col">
                 <span class="sm:text-base text-gray-600 font-medium leading-tight text-sm">国立大学法人 奈良国立大学機構</span>
                 <div class="flex-col sm:flex sm:flex-row sm:space-x-2">
-                    <span class="sm:text-2xl lg:text-3xl text-gray-900 font-bold leading-tighttracking-wide text-xl">奈良女子大学附属中等教育学校</span>
-                    <span class="sm:text-2xl lg:text-3xl text-gray-900 font-bold leading-tighttracking-wide text-xl">サイエンス研究会</span>
+                    <span class="sm:text-2xl lg:text-2xl text-gray-900 font-bold leading-tighttracking-wide text-xl">奈良女子大学附属中等教育学校</span>
+                    <span class="sm:text-2xl lg:text-2xl text-gray-900 font-bold leading-tighttracking-wide text-xl">サイエンス研究会</span>
                 </div>
                 <span class="sm:text-lg text-gray-500 font-normal leading-tight tracking-wider text-sm">Nara Women's University Secondary School Science Research Group</span>
+            </div>
+        </div>
+        
+        <!-- ナビゲーションメニュー -->
+        <div class="border-t border-gray-200">
+            <div class="px-5 py-3">
+                <nav class="flex space-x-8">
+                    <a href="index.html" class="text-black font-medium">ホーム</a>
+                    <a href="news.html" class="text-gray-600 hover:text-black transition-colors">お知らせ</a>
+                    <a href="achievements.html" class="text-gray-600 hover:text-black transition-colors">活動実績</a>
+                </nav>
             </div>
         </div>
     </nav>
@@ -59,11 +70,36 @@
         </div>
     </section>
 
+    <!-- Our Mottoセクション -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Our Motto</h2>
+                <p class="text-4xl md:text-5xl font-bold mb-8">
+                    <span class="text-black">"</span><span id="typing-text" class="text-black"></span><span class="text-black">"</span>
+                </p>
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        これは、私たちサイエンス研究会の根本的な理念です。どんな小さなアイデアでも、まずは形にして「光らせる」ことから始める。
+                        そこから新たな発見や可能性が生まれると信じています。
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        電子工作で初めてLEDを光らせた時の感動、プログラムが初めて動いた時の喜び、
+                        ロボットが思い通りに動いた時の達成感。その瞬間から、私たちの探究が始まります。
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed">
+                        失敗を恐れず、まずは試してみる。光らせることから始まる学びの旅を、私たちは大切にしています。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- About Usセクション -->
     <section class="py-16 bg-white overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2">
             <div class="relative h-96 lg:h-auto order-1 lg:order-2">
-                <img src="./images/IMG_9234.JPG" alt="活動の様子" class="w-full h-full object-cover">
+                <img src="./images/IMG_9290.JPG" alt="活動の様子" class="w-full h-full object-cover">
             </div>
             <div class="px-8 lg:px-16 py-16 flex items-center order-2 lg:order-1">
                 <div>
@@ -73,21 +109,21 @@
                         私たちSSHサイエンス研究会は、電子工作、WEB制作、ロボット制作、プログラミングなどを通して、
                         テクノロジーの魅力を深く学び、創造的な活動に取り組んでいます。
                     </p>
-                    <button class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors">
-                        詳しく見る
-                    </button>
+                    <a href="news.html" class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors inline-block">
+                        お知らせを見る
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Our Activitiesセクション -->
-    <section class="py-16 bg-white overflow-hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-2" data-reveal="slide-reveal">
-            <div class="relative h-96 lg:h-auto order-1 lg:order-1 slide-image">
-                <img src="./images/IMG_9234.JPG" alt="活動の様子" class="w-full h-full object-cover">
+    <section class="py-16 overflow-hidden bg-white">
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div class="relative h-96 lg:h-auto order-1 lg:order-1">
+                <img src="./images/IMG_9275.JPG" alt="活動の様子" class="w-full h-full object-cover">
             </div>
-            <div class="px-8 lg:px-16 py-16 flex items-center order-2 lg:order-2 slide-content">
+            <div class="px-8 lg:px-16 py-16 flex items-center order-2 lg:order-2">
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Our Activities</h2>
                     <p class="text-lg text-gray-700 mb-6">私たちの活動</p>
@@ -99,10 +135,10 @@
                         <li>ロボット制作: 設計・制作・プログラミング</li>
                     </ul>
                     </p>
-                    <button
-                        class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors">
-                        活動について
-                    </button>
+                    <a href="achievements.html"
+                        class="border border-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-50 transition-colors inline-block">
+                        活動実績を見る
+                    </a>
                 </div>
             </div>
         </div>
