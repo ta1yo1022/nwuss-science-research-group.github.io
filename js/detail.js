@@ -47,7 +47,7 @@ function renderContent(content, type) {
     
     // ページタイトルを動的に設定
     const pageTitle = type === 'news' ? 'お知らせ' : '活動実績';
-    document.getElementById('page-title').textContent = `${content.title} - ${pageTitle} - 奈良女子大学附属中等教育学校 サイエンス研究会`;
+    document.getElementById('page-title').textContent = `${content.title} - ${pageTitle} - 奈良女子大学附属中等教育学校 サイエンス研究会 情報班・物理班`;
 
     // 説明文があれば表示
     if (content.description) {
