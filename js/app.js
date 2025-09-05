@@ -1,119 +1,114 @@
-const MICROCMS_CONFIG = {
-    serviceDomain: 'nwuss-ssh',
-    apiKey: 'PIDoux8MFLzwa8cLrhC7A3kBK5mEfpjP78vY'
+const config = {
+    domain: 'nwuss-ssh',
+    key: 'PIDoux8MFLzwa8cLrhC7A3kBK5mEfpjP78vY'
 };
 
-const microCMS = new MicroCMSClient(MICROCMS_CONFIG.serviceDomain, MICROCMS_CONFIG.apiKey);
+const client = new MicroCMSClient(config.domain, config.key);
 
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('ja-JP', {
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('ja-JP', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     });
 }
 
-function createAchievementCard(achievement) {
-    const imageData = achievement.swiper_image || achievement.image;
+function buildCard(item) {
+    const img = item.swiper_image || item.image;
     return `
-        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col cursor-pointer" onclick="location.href='achievement-detail.html?id=${achievement.id}&type=achievement'">
-            ${imageData ? `
+        <article class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col cursor-pointer" onclick="location.href='achievement-detail.html?id=${item.id}&type=achievement'">
+            ${img ? `
                 <div class="h-48 bg-gray-200 overflow-hidden">
-                    <img src="${imageData.url}" alt="${achievement.title}" class="w-full h-full object-cover">
+                    <img src="${img.url}" alt="${item.title}" class="w-full h-full object-cover">
                 </div>
             ` : ''}
             <div class="p-6 flex-1 flex flex-col">
-                <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${achievement.title}</h2>
-                ${achievement.description ? `
-                    <p class="text-gray-600 mb-4 flex-1 line-clamp-2">${achievement.description}</p>
+                <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${item.title}</h2>
+                ${item.description ? `
+                    <p class="text-gray-600 mb-4 flex-1 line-clamp-2">${item.description}</p>
                 ` : ''}
-                ${achievement.body ? `
+                ${item.body ? `
                     <div class="text-gray-600 mb-4 flex-1 prose prose-sm line-clamp-2">
-                        ${achievement.body.length > 100 ? achievement.body.substring(0, 100) + '...' : achievement.body}
+                        ${item.body.length > 100 ? item.body.substring(0, 100) + '...' : item.body}
                     </div>
                 ` : ''}
                 <div class="flex items-center justify-between mt-auto">
-                    <span class="text-sm text-gray-500">${formatDate(achievement.publishedAt)}</span>
+                    <span class="text-sm text-gray-500">${formatDate(item.publishedAt)}</span>
                 </div>
             </div>
         </article>
     `;
 }
 
-async function loadLatestAchievements() {
+async function loadRecentItems() {
     try {
-        const achievementsContainer = document.getElementById('achievements-container');
-        const loadingElement = document.getElementById('loading');
-        if (!achievementsContainer || !loadingElement) return;
+        const container = document.getElementById('achievements-container');
+        const loader = document.getElementById('loading');
+        if (!container || !loader) return;
 
-        // ローディング表示を開始
-        loadingElement.classList.remove('hidden');
-        achievementsContainer.classList.add('hidden');
+        loader.classList.remove('hidden');
+        container.classList.add('hidden');
 
-        const response = await microCMS.getAchievements(3);
-        const achievements = response.contents;
+        const data = await client.getAchievements(3);
+        const items = data.contents;
 
-        // ローディング表示を隠し、コンテンツを表示
-        loadingElement.classList.add('hidden');
-        achievementsContainer.classList.remove('hidden');
+        loader.classList.add('hidden');
+        container.classList.remove('hidden');
 
-        if (achievements.length === 0) {
-            achievementsContainer.innerHTML = '<div class="col-span-full text-center text-gray-500">実績がまだありません</div>';
+        if (items.length === 0) {
+            container.innerHTML = '<div class="col-span-full text-center text-gray-500">実績がまだありません</div>';
             return;
         }
 
-        achievementsContainer.innerHTML = achievements.map(createAchievementCard).join('');
+        container.innerHTML = items.map(buildCard).join('');
     } catch (error) {
-        console.error('実績の読み込みに失敗しました:', error);
-        const achievementsContainer = document.getElementById('achievements-container');
-        const loadingElement = document.getElementById('loading');
+        console.error('読み込みエラー:', error);
+        const container = document.getElementById('achievements-container');
+        const loader = document.getElementById('loading');
         
-        // エラー時もローディングを隠す
-        if (loadingElement) loadingElement.classList.add('hidden');
-        if (achievementsContainer) {
-            achievementsContainer.classList.remove('hidden');
-            achievementsContainer.innerHTML = '<div class="col-span-full text-center text-red-500">実績の読み込みに失敗しました</div>';
+        if (loader) loader.classList.add('hidden');
+        if (container) {
+            container.classList.remove('hidden');
+            container.innerHTML = '<div class="col-span-full text-center text-red-500">実績の読み込みに失敗しました</div>';
         }
     }
 }
 
-function typeWriter(element, text, speed = 80) {
+function startTyping(element, text, delay = 80) {
     let i = 0;
     element.innerHTML = '';
     
-    function typing() {
+    function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
-            setTimeout(typing, speed);
+            setTimeout(type, delay);
         }
     }
     
-    typing();
+    type();
 }
 
-function startTypingAnimation() {
-    const typingElement = document.getElementById('typing-text');
-    const cursor = document.getElementById('cursor');
+function initTypingEffect() {
+    const el = document.getElementById('typing-text');
     
-    if (typingElement) {
+    if (el) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     setTimeout(() => {
-                        typeWriter(typingElement, '光らせることからはじめよう', 80);
+                        startTyping(el, '光らせることからはじめよう', 80);
                     }, 500);
                     observer.disconnect();
                 }
             });
         }, { threshold: 0.5 });
         
-        observer.observe(typingElement.parentElement);
+        observer.observe(el.parentElement);
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    loadLatestAchievements();
-    startTypingAnimation();
+    loadRecentItems();
+    initTypingEffect();
 });
