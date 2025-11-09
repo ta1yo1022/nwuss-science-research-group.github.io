@@ -40,6 +40,19 @@ function showError() {
     document.getElementById('error-message').classList.remove('hidden');
 }
 
+function processContent(content) {
+    // 空の<p></p>タグを<p>&nbsp;</p>に変換
+    content = content.replace(/<p><\/p>/g, '<p>&nbsp;</p>');
+    
+    // 空の<p> </p>タグ（スペースのみ）も変換
+    content = content.replace(/<p>\s*<\/p>/g, '<p>&nbsp;</p>');
+    
+    // 連続する改行を保持するために<br>タグを追加
+    content = content.replace(/\n\s*\n/g, '\n<br>\n');
+    
+    return content;
+}
+
 function renderData(data, type) {
     const titleEl = document.getElementById('article-title');
     const dateEl = document.getElementById('article-date');
@@ -81,7 +94,7 @@ function renderData(data, type) {
 
     const bodyEl = document.getElementById('article-body');
     if (data.body && bodyEl) {
-        bodyEl.innerHTML = data.body;
+        bodyEl.innerHTML = processContent(data.body);
     }
 
     if (data.swiper_image && data.swiper_image.length > 1) {

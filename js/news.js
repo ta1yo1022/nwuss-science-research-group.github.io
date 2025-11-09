@@ -31,12 +31,7 @@ function buildNewsCard(article) {
             <div class="p-6 flex-1 flex flex-col">
                 <h2 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${article.title}</h2>
                 ${article.description ? `
-                    <p class="text-gray-600 mb-4 flex-1 line-clamp-2">${article.description}</p>
-                ` : ''}
-                ${article.body ? `
-                    <div class="text-gray-600 mb-4 flex-1 prose prose-sm line-clamp-2">
-                        ${article.body.length > 100 ? article.body.substring(0, 100) + '...' : article.body}
-                    </div>
+                    <p class="text-gray-600 mb-4 line-clamp-2">${article.description}</p>
                 ` : ''}
                 <div class="flex items-center justify-between mt-auto">
                     <span class="text-sm text-gray-500">${formatDate(article.publishedAt)}</span>
